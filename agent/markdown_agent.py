@@ -1,15 +1,21 @@
-import os
+# from google.adk.agent import Agent
 from tools.markdown_validator import validate_markdown
+import os
 
 
-class MarkdownValidatorAgent:
+class MarkdownAgent:
+    def __init__(self):
+        print("AI Agent Initialized (Google ADK style)")
 
-    def run(self, input_md, output_md):
-        issues, fixes, fixed_content = validate_markdown(input_md)
+    def run(self, input_file):
+        print("Agent reading markdown file...")
 
-        os.makedirs(os.path.dirname(output_md), exist_ok=True)
+        issues, fixes, fixed_content = validate_markdown(input_file)
 
-        with open(output_md, "w", encoding="utf-8") as f:
+        os.makedirs("output", exist_ok=True)
+
+        output_file = "output/fixed_sample.md"
+        with open(output_file, "w", encoding="utf-8") as f:
             f.write(fixed_content)
 
         return issues, fixes

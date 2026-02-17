@@ -1,16 +1,13 @@
-from agent.markdown_agent import MarkdownValidatorAgent
+from agent.markdown_agent import MarkdownAgent
 
-agent = MarkdownValidatorAgent()
+agent = MarkdownAgent()
 
-issues, fixes = agent.run(
-    "input/sample.md",
-    "output/fixed_sample.md"
-)
+issues, fixes = agent.run("input/sample.md")
 
-print("Detected Issues:")
-for i in issues:
-    print("-", i)
+print("\nIssues Found:")
+for issue in issues:
+    print("-", issue)
 
-print("\nSuggested Fixes:")
-for f in fixes:
-    print("-", f)
+print("\nFix Suggestions:")
+for fix in fixes:
+    print("-", fix)
