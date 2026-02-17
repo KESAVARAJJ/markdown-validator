@@ -1,6 +1,7 @@
 import re
 import requests
 
+
 def validate_markdown(file_path):
     issues = []
     fixes = []
@@ -11,7 +12,7 @@ def validate_markdown(file_path):
     fixed_content = content
 
     if content.count("**") % 2 != 0:
-        issues.append("Unclosed bold (** )")
+        issues.append("Unclosed bold (**)")
         fixes.append("Add closing **")
         fixed_content += "**"
 
@@ -29,7 +30,8 @@ def validate_markdown(file_path):
                 issues.append(f"Broken link: {link}")
                 fixes.append(f"Replace or remove link: {link}")
                 fixed_content = fixed_content.replace(link, "#")
-        except:
+
+        except requests.RequestException:
             issues.append(f"Broken link: {link}")
             fixes.append(f"Replace or remove link: {link}")
             fixed_content = fixed_content.replace(link, "#")

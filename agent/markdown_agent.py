@@ -1,7 +1,9 @@
 import os
 from tools.markdown_validator import validate_markdown
 
+
 class MarkdownValidatorAgent:
+
     def run(self, input_md, output_md):
         issues, fixes, fixed_content = validate_markdown(input_md)
 
